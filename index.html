@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextChunker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <h1>TextChunker</h1>
+                </div>
+                <button id="close-sidebar-btn" class="icon-btn mobile-only"
+                    style="font-size: 1.6rem; margin-right: 1rem; margin-top: -0.8rem;">×</button>
+            </div>
+            <div class="sidebar-actions">
+                <button id="new-chat-btn" class="btn-primary-sm">+ New Project</button>
+            </div>
+
+            <div class="history-list" id="history-list">
+                <!-- History items will be injected here -->
+            </div>
+
+            <div class="sidebar-footer">
+                <p>Local Storage Only</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <button id="toggle-sidebar" class="icon-btn mobile-only">☰</button>
+                <div class="project-title-edit" id="title-container">
+                    <h2 id="project-title-display">Untitled Project</h2>
+                    <input type="text" id="project-title-input" value="Untitled Project" placeholder="Project Name"
+                        maxlength="50" style="display: none;">
+                    <button id="edit-title-btn" class="icon-btn edit-icon-btn" title="Rename">✎</button>
+                    <button id="save-title-btn" class="icon-btn save-icon-btn" title="Save"
+                        style="display: none;">✓</button>
+                </div>
+                <div class="top-actions">
+                    <!-- Future: Export/Theme -->
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Input Section -->
+                <div class="input-panel glass-panel">
+                    <div>
+                        <textarea id="main-input" placeholder="Paste your long text here..."></textarea>
+                    </div>
+                    <div class="input-stats">
+                        <label class="input-label">Long Text</label>
+                        <span id="char-count">0 chars</span>
+                        <span id="word-count">0 words</span>
+                    </div>
+                </div>
+
+                <!-- settings-toolbar -->
+                <section class="settings-toolbar glass-panel">
+                    <div class="setting-group split-setting">
+                        <div class="split-controls">
+                            <label>Split Length</label>
+                            <div class="custom-length-wrapper">
+                                <label for="length-input" class="sub-label">Custom Length:</label>
+                                <input type="number" id="length-input" value="2000" min="10" max="50000">
+                            </div>
+                        </div>
+                        <div class="presets">
+                            <button class="preset-btn" data-val="500">500</button>
+                            <button class="preset-btn" data-val="1000">1000</button>
+                            <button class="preset-btn" data-val="2000">2000</button>
+                            <button class="preset-btn" data-val="5000">5000</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-group decoration-wrapper">
+                        <label>Prefix (Start)</label>
+                        <textarea id="prefix-input" class="decoration-input"
+                            placeholder="e.g. [Part {i}]&#10;Type here..."></textarea>
+                    </div>
+
+                    <div class="setting-group decoration-wrapper">
+                        <label>Suffix (End)</label>
+                        <textarea id="suffix-input" class="decoration-input"
+                            placeholder="e.g. ... (Cont.)&#10;Type here..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Output Section -->
+                <section class="output-section" id="output-container">
+                    <!-- Cards injected here -->
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Templates -->
+    <template id="chunk-card-template">
+        <div class="chunk-card glass-panel">
+            <div class="chunk-header">
+                <span class="chunk-badge">Part <span class="chunk-index">1</span></span>
+                <span class="chunk-len">500 chars</span>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <div class="chunk-content"></div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
