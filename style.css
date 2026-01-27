@@ -249,6 +249,7 @@ body {
 .project-title-edit {
     display: flex;
     align-items: center;
+    padding-left: 16px;
     gap: 12px;
     flex: 1;
     min-width: 0;
@@ -258,7 +259,6 @@ body {
 #project-title-display {
     font-size: 1.1rem;
     font-weight: 500;
-    padding-left: 11px;
     color: #fff;
     white-space: nowrap;
     overflow: hidden;
