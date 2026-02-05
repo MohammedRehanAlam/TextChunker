@@ -12,6 +12,65 @@
 </head>
 
 <body>
+    <!-- Auth Overlay -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="auth-card glass-panel">
+            <div class="auth-header">
+                <div class="logo" style="justify-content: center; margin-bottom: 5px;">
+                    <span class="logo-icon" style="font-size: 2rem;">⚡</span>
+                    <h1 style="font-size: 1.8rem;">TextChunker</h1>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign in to sync your chunks across devices
+                </p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login">Login</button>
+                <button class="auth-tab" id="tab-signup">Sign Up</button>
+            </div>
+
+            <form id="auth-form" class="auth-form">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" placeholder="name@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" id="auth-submit-btn" class="btn-primary-sm"
+                    style="margin-top: 10px;">Login</button>
+            </form>
+
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+
+            <button id="google-login-btn-main" class="btn-secondary-sm"
+                style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px;">
+                <svg width="20" height="20" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"
+                        fill="#4285F4"></path>
+                    <path
+                        d="M9 18c2.43 0 4.467-.806 5.956-2.181l-2.908-2.258c-.806.54-1.836.86-3.048.86-2.344 0-4.328-1.584-5.036-3.716H1.957v2.332A8.997 8.997 0 0 0 9 18z"
+                        fill="#34A853"></path>
+                    <path
+                        d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H1.957A8.996 8.996 0 0 0 .9 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+                        fill="#FBBC05"></path>
+                    <path
+                        d="M9 3.58c1.321 0 2.508.455 3.44 1.345l2.582-2.58C13.463.89 11.426 0 9 0A8.997 8.997 0 0 0 1.957 4.958L4.964 7.32C5.673 5.187 7.656 3.58 9 3.58z"
+                        fill="#EA4335"></path>
+                </svg>
+                <span>Continue with Google</span>
+            </button>
+            <p id="auth-error-msg"
+                style="color: #ff5252; font-size: 0.85rem; margin-top: 15px; text-align: center; display: none;"></p>
+            <button id="skip-auth-btn"
+                style="background: none; border: none; color: var(--text-secondary); font-size: 0.8rem; margin-top: 20px; cursor: pointer; text-decoration: underline;">Continue
+                Offline (No Sync)</button>
+        </div>
+    </div>
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
@@ -23,6 +82,7 @@
                 <button id="close-sidebar-btn" class="icon-btn mobile-only"
                     style="font-size: 1.6rem; margin-right: 1rem; margin-top: -0.8rem;">×</button>
             </div>
+
             <div class="sidebar-actions">
                 <button id="new-chat-btn" class="btn-primary-sm">+ New Project</button>
             </div>
@@ -31,8 +91,34 @@
                 <!-- History items will be injected here -->
             </div>
 
-            <div class="sidebar-footer">
-                <p>Local Storage Only</p>
+            <div class="sidebar-user" id="user-section">
+                <div id="user-info" style="display: none; align-items: center; gap: 10px; margin-bottom: 1rem;">
+                    <img id="user-avatar" src="" alt="User" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div style="flex: 1; min-width: 0;">
+                        <span id="user-name"
+                            style="display: block; font-size: 0.9rem; color: var(--text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;"></span>
+                        <span style="display: block; font-size: 0.75rem; color: var(--text-secondary);">Free Plan</span>
+                    </div>
+                    <button id="logout-btn" class="icon-btn" title="Logout" style="font-size: 0.9rem;">→</button>
+                </div>
+                <button id="login-btn" class="btn-secondary-sm"
+                    style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"
+                            fill="#4285F4"></path>
+                        <path
+                            d="M9 18c2.43 0 4.467-.806 5.956-2.181l-2.908-2.258c-.806.54-1.836.86-3.048.86-2.344 0-4.328-1.584-5.036-3.716H1.957v2.332A8.997 8.997 0 0 0 9 18z"
+                            fill="#34A853"></path>
+                        <path
+                            d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H1.957A8.996 8.996 0 0 0 .9 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+                            fill="#FBBC05"></path>
+                        <path
+                            d="M9 3.58c1.321 0 2.508.455 3.44 1.345l2.582-2.58C13.463.89 11.426 0 9 0A8.997 8.997 0 0 0 1.957 4.958L4.964 7.32C5.673 5.187 7.656 3.58 9 3.58z"
+                            fill="#EA4335"></path>
+                    </svg>
+                    <span>Sign in with Google</span>
+                </button>
             </div>
         </aside>
 
@@ -117,7 +203,7 @@
         </div>
     </template>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

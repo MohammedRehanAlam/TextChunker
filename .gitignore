@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.log
+
+# Dependencies (if you add npm later)
+node_modules/
+package-lock.json
+
+# Environment (if you add local dev later)
+.env
+.env.local

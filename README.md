@@ -14,6 +14,7 @@ A powerful, aesthetic, and privacy-focused web application designed to split lon
 *   **Auto-Rename**: Projects are automatically named based on their content (e.g., "Meeting Notes...") so you can find them easily.
 *   **Smart Session Start**: Reloading the page intelligently starts a new project if you were working, or reopens your last empty project to keep things clean.
 *   **Sidebar History**: Access all your previous split projects from the collapsible sidebar.
+*   **Cloud Sync (New!)**: Log in with Google to sync your projects across devices.
 
 ### 🎨 Modern UI/UX
 *   **Glassmorphism Design**: Sleek, dark-themed interface with translucent glass effects.
@@ -25,7 +26,8 @@ A powerful, aesthetic, and privacy-focused web application designed to split lon
 *   **HTML5**: Semantic structure.
 *   **CSS3**: Advanced styling with Flexbox, Grid, Variables, and Media Queries.
 *   **JavaScript (ES6+)**: Pure, dependency-free logic for state management and DOM manipulation.
-*   **Local Storage**: Client-side data persistence (no server required).
+*   **Local Storage**: Client-side data persistence for offline use.
+*   **Firebase**: Google Auth and Firestore for cloud synchronization.
 
 ## 🚀 Getting Started
 
@@ -36,7 +38,7 @@ A powerful, aesthetic, and privacy-focused web application designed to split lon
 5.  **Copy**: Click the "Copy" button on any generated chunk.
 
 ## 🔐 Privacy
-TextChunker operates entirely **offline** in your browser. No text data is ever sent to a server. Your data remains strictly on your device.
+TextChunker is **Local-First**. Your data is stored on your device by default. Signing in via Google enables **Cloud Sync**, securely storing your projects in your private Firestore database for cross-device access.
 
 ---
 *Built with simplicity and efficiency in mind.*
